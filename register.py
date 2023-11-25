@@ -13,9 +13,11 @@ database="migrainedb"
 )
 c = db.cursor()
 
+from main import login_page
+
 def register_page():
 
-    from login import login_page
+
     
     registerPanel = Tk()
     registerPanel.geometry('+200+50') 
@@ -45,9 +47,10 @@ def register_page():
             c.execute('INSERT INTO user VALUES (NULL, %s, %s, %s)', (user_name, user_email, user_password))
             db.commit()
             print(c.rowcount, "record inserted.")
-            registerPanel.destroy()
             messagebox.showinfo(title="info", message="success")
+            registerPanel.destroy()
             login_page()
+
     registerButton = ttk.Button(registerPanel, text='register', command=register_success).grid(row=4, column=1)
 
     def register_to_login():
