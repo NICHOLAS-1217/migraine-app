@@ -4,8 +4,6 @@ from tkinter.ttk import *
 from tkinter import messagebox
 import mysql.connector
 
-from login import login_page
-
 db = mysql.connector.connect(
 host="localhost",
 user="root",
@@ -16,6 +14,8 @@ database="migrainedb"
 c = db.cursor()
 
 def register_page():
+
+    from login import login_page
     
     registerPanel = Tk()
     registerPanel.geometry('+200+50') 
@@ -50,7 +50,10 @@ def register_page():
             login_page()
     registerButton = ttk.Button(registerPanel, text='register', command=register_success).grid(row=4, column=1)
 
-    backButton = Button(registerPanel, text='back').grid(row=5, column=0)
+    def register_to_login():
+        registerPanel.destroy()
+        login_page()
+    backButton = Button(registerPanel, text='back', command=register_to_login).grid(row=5, column=0)
 
     caretakerButton = Button(registerPanel, text='care taker').grid(row=5, column=2)
 

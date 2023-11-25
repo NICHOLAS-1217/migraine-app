@@ -1,26 +1,32 @@
 from tkinter import *
 from tkinter.ttk import *
 
+
 def login_page():
+
+    from register import register_page
     
-    window = Tk()
-    window.geometry('+200+50') 
-    window.title("migraine app")
+    loginPanel = Tk()
+    loginPanel.geometry('+200+50') 
+    loginPanel.title("migraine app")
 
-    welcomeLabel = Label(window, text="welcome").grid(row=0, column=1)
+    welcomeLabel = Label(loginPanel, text="welcome").grid(row=0, column=1)
 
-    emailLabel = Label(window, text="email").grid(row=1, column=0)
+    emailLabel = Label(loginPanel, text="email").grid(row=1, column=0)
     email = StringVar()
-    emailEntry = Entry(window, textvariable=email).grid(row=1, column=1)
+    emailEntry = Entry(loginPanel, textvariable=email).grid(row=1, column=1)
 
-    passowrdLabel = Label(window, text="password").grid(row=2, column=0)
+    passowrdLabel = Label(loginPanel, text="password").grid(row=2, column=0)
     password = StringVar()
-    passwordEntry = Entry(window, textvariable=password).grid(row=2, column=1)
+    passwordEntry = Entry(loginPanel, textvariable=password).grid(row=2, column=1)
 
-    loginButton = Button(window, text="login").grid(row=3, column=1)
+    loginButton = Button(loginPanel, text="login").grid(row=3, column=1)
 
-    registerButton = Button(window, text='register').grid(row=4, column=2)
+    def login_to_register():
+        loginPanel.destroy()
+        register_page()
+    registerButton = Button(loginPanel, text='register', command=login_to_register).grid(row=4, column=2)
 
-    adminLoginButton = Button(window, text='admin').grid(row=4, column=0)
+    adminLoginButton = Button(loginPanel, text='admin').grid(row=4, column=0)
 
-    window.mainloop()
+    loginPanel.mainloop()
