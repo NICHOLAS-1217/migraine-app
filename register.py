@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter.ttk import *
 from tkinter import messagebox
+from tkinter.ttk import *
 import mysql.connector
 
 db = mysql.connector.connect(
@@ -17,8 +17,6 @@ from main import login_page
 
 def register_page():
 
-
-    
     registerPanel = Tk()
     registerPanel.geometry('+200+50') 
     registerPanel.title("migraine app")

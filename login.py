@@ -15,6 +15,7 @@ c = db.cursor()
 def login_page():
 
     from register import register_page
+    from home import home_page
     
     loginPanel = Tk()
     loginPanel.geometry('+200+50') 
@@ -40,7 +41,7 @@ def login_page():
             if c.fetchone():
                 user_login = user_email
                 loginPanel.destroy()
-                print("hiahia")
+                home_page()
             else: 
                 messagebox.showwarning('WARNING','PLEASE TRY AGAIN')
             db.commit()
