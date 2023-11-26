@@ -1,7 +1,9 @@
 from tkinter import *
-from tkinter import ttk
 from tkinter import messagebox
 from tkinter.ttk import *
+from ttkbootstrap.constants import *
+import tkinter as tk
+import ttkbootstrap as ttk
 import mysql.connector
 
 db = mysql.connector.connect(
@@ -13,26 +15,28 @@ database="migrainedb"
 )
 c = db.cursor()
 
-from main import login_page
-
 def register_page():
 
-    registerPanel = Tk()
-    registerPanel.geometry('+200+50') 
+    from login import login_page
+
+    registerPanel = tk.Tk()
+    style = ttk.Style("superhero")
+    registerPanel.geometry('1000x800') 
     registerPanel.title("migraine app")
+    registerPanel.resizable(False, False)
 
-    welcomeLabel = Label(registerPanel, text="registration").grid(row=0, column=1)
+    registerLabel = ttk.Label(registerPanel, text="registration").grid(row=0, column=1)
 
-    nameLabel = Label(registerPanel, text="username").grid(row=1, column=0)
-    name = StringVar()
+    nameLabel = ttk.Label(registerPanel, text="username").grid(row=1, column=0)
+    name = ttk.StringVar()
     nameEntry = ttk.Entry(registerPanel, textvariable=name).grid(row=1, column=1)
 
-    emailLabel = Label(registerPanel, text="email").grid(row=2, column=0)
-    email = StringVar()
+    emailLabel = ttk.Label(registerPanel, text="email").grid(row=2, column=0)
+    email = ttk.StringVar()
     emailEntry = ttk.Entry(registerPanel, textvariable=email).grid(row=2, column=1)
 
-    passowrdLabel = Label(registerPanel, text="password").grid(row=3, column=0)
-    password = StringVar()
+    passowrdLabel = ttk.Label(registerPanel, text="password").grid(row=3, column=0)
+    password = ttk.StringVar()
     passwordEntry = ttk.Entry(registerPanel, textvariable=password).grid(row=3, column=1)
 
     def register_success():
@@ -54,8 +58,10 @@ def register_page():
     def register_to_login():
         registerPanel.destroy()
         login_page()
-    backButton = Button(registerPanel, text='back', command=register_to_login).grid(row=5, column=0)
+    backButton = ttk.Button(registerPanel, text='back', command=register_to_login).grid(row=5, column=0)
 
-    caretakerButton = Button(registerPanel, text='care taker').grid(row=5, column=2)
+    caretakerButton = ttk.Button(registerPanel, text='care taker').grid(row=5, column=2)
 
     registerPanel.mainloop()
+
+

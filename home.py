@@ -23,11 +23,11 @@ def home_page():
     homePanel.geometry('+200+50') 
     homePanel.title("migraine app")
 
-    cal = Calendar(homePanel, selectmode='day',year=current_time.year, month=current_time.month, day=current_time.day)
+    cal = Calendar(homePanel, selectmode='day', year=current_time.year, month=current_time.month, day=current_time.day)
     cal.pack(pady = 20)
     def date():
         date.config(text = "Selected Date is: " + cal.get_date())
-    Button(homePanel, text = "Get Date",command = date).pack(pady = 20)
+    Button(homePanel, text="Get Date", command=date).pack(pady = 20)
     date = Label(homePanel, text = "")
     date.pack(pady = 20)
    

@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import *
+from ttkbootstrap.constants import *
+import tkinter as tk
+import ttkbootstrap as ttk
 import mysql.connector
 
 db = mysql.connector.connect(
@@ -14,22 +17,24 @@ c = db.cursor()
 
 def login_page():
 
-    from register import register_page
     from home import home_page
+    from register import register_page
     
-    loginPanel = Tk()
-    loginPanel.geometry('+200+50') 
+    loginPanel = tk.Tk()
+    style = ttk.Style("superhero")
+    loginPanel.geometry('1000x800') 
     loginPanel.title("migraine app")
+    loginPanel.resizable(False, False)
 
-    welcomeLabel = Label(loginPanel, text="welcome").grid(row=0, column=1)
+    welcomeLabel = ttk.Label(loginPanel, text="welcome").place(x=500, y=250, anchor='center')
 
-    emailLabel = Label(loginPanel, text="email").grid(row=1, column=0)
-    email = StringVar()
-    emailEntry = Entry(loginPanel, textvariable=email).grid(row=1, column=1)
+    emailLabel = ttk.Label(loginPanel, text="email").place(x=325, y=285)
+    email = ttk.StringVar()
+    emailEntry = ttk.Entry(loginPanel, textvariable=email).place(x=500, y=300, anchor='center')
 
-    passowrdLabel = Label(loginPanel, text="password").grid(row=2, column=0)
-    password = StringVar()
-    passwordEntry = Entry(loginPanel, textvariable=password).grid(row=2, column=1)
+    passowrdLabel = ttk.Label(loginPanel, text="password").place(x=325, y=335)
+    password = ttk.StringVar()
+    passwordEntry = ttk.Entry(loginPanel, textvariable=password).place(x=500, y=350, anchor='center')
 
     def login_to_home():
         user_email = email.get()
@@ -45,13 +50,17 @@ def login_page():
             else: 
                 messagebox.showwarning('WARNING','PLEASE TRY AGAIN')
             db.commit()
-    loginButton = Button(loginPanel, text="login", command=login_to_home).grid(row=3, column=1)
+    loginButton = ttk.Button(loginPanel, text="login", command=login_to_home, bootstyle=(LIGHT, OUTLINE)).place(x=500, y=400, anchor='center')
 
     def login_to_register():
         loginPanel.destroy()
         register_page()
-    registerButton = Button(loginPanel, text='register', command=login_to_register).grid(row=4, column=2)
+    registerButton = ttk.Button(loginPanel, text='register', command=login_to_register, bootstyle=(LIGHT, OUTLINE)).place(x=963, y=34, anchor="s")
 
-    adminLoginButton = Button(loginPanel, text='admin').grid(row=4, column=0)
+    adminLoginButton = ttk.Button(loginPanel, text='admin', bootstyle=(LIGHT, OUTLINE)).place(x=0, y=0)
 
     loginPanel.mainloop()
+
+
+    
+
