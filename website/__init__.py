@@ -19,7 +19,7 @@ def create_app():
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
 
-    from .models import User, Note
+    from .models import User, Note, Caretaker
 
     create_database(app)
 
@@ -30,10 +30,11 @@ def create_app():
     # telling flask how to load a user for login manager
     @login_manager.user_loader
     def load_user(id):
-        u =  User.query.get(id)
+        u =  User.query.get(int(id))
+        c = Caretaker.query.get(int(id))
         app.logger.info('%s user data', u)
-        return u
-
+        return u or c
+    
     return app
 
 def create_database(app):

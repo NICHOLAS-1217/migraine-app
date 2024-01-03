@@ -31,3 +31,8 @@ def contact_us():
 @login_required
 def profile():
     return render_template("profile.html", user=current_user)
+
+@views.route("/care_home")
+@login_required
+def care_home():
+    return render_template("care_home.html", caretaker=current_user)
