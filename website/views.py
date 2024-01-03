@@ -35,4 +35,4 @@ def profile():
 @views.route("/care_home")
 @login_required
 def care_home():
-    return render_template("care_home.html", caretaker=current_user)
+    return render_template("care_home.html", user=current_user)
