@@ -10,4 +10,79 @@
 
 {% block body %}
     <h1>this is home</h1>
+    <form action="" method="POST" algin="center">
+        <div class="form-group">
+            <label for="">this is date picker</label>
+            <input type="date" id="datepicker" name="datepicker">
+        </div>
+        <div class="form-group">
+            <label for="">severity of migraine</label>
+            <input type="range" class="form-range" min="0" max="10" id="severity" name="severity">
+            <span id="rangeValue">5</span>
+        </div>
+        <div class="form-group">
+            <label for="">stress level</label>
+            <input type="range" class="form-range" min="0" max="10" id="stress" name="stress">
+            <span id="stressValue">5</span>
+        </div>  
+        <div class="form-group">
+            <label for="">symptoms</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="T" id="light" name="light">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Sensitivity to Light
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="T" id="sound" name="sound">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Sensitivity to Sound
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="T" id="nausea" name="nausea">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Nausea
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="T" id="aura" name="aura">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Aura
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="T" id="viual" name="visual">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Visual Changes
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="T" id="dizziness" name="dizzness">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Dizziness
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="T" id="fatigue" name="fatigue">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Fatigue
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="T" id="unconcentrated" name="unconcentrated">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Unconcentrated
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="T" id="neck" name="neck">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Neck Stiffness
+                </label>
+            </div>
+        </div>  
+        <button type="submit" class="btn btn-primary">submit</button>
+    </form>
+    <script src="../static/js/range.js"></script>
 {% endblock  %}
