@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, session
 from flask_login import login_required, current_user
 from .models import Status
 from . import db
@@ -43,7 +43,8 @@ def home():
 @views.route("/migraineHistory")
 @login_required
 def migraine_history():
-    return render_template("migraineHistory.html", user=current_user)
+    status = Status.query.filter_by(user_id=current_user.id).all()
+    return render_template("migraineHistory.html", user=current_user, status=status)
 
 @views.route("/migraineResult")
 @login_required
