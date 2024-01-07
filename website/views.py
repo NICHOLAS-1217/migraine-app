@@ -83,3 +83,13 @@ def profile():
 @login_required
 def care_home():
     return render_template("care_home.html", user=current_user)
+
+@views.route("/care_update")
+@login_required
+def care_update():
+    return render_template("care_update.html", user=current_user)
+
+@views.route("/care_profile")
+@login_required
+def care_profile():
+    return render_template("care_profile.html", user=current_user)
