@@ -25,6 +25,8 @@ def create_app():
 
     login_manager = LoginManager()
     login_manager.login_view = "auth.login"
+    login_manager.login_message = "User needs to be logged in to view this page"
+    login_manager.login_message_category = "error"
     login_manager.init_app(app)
 
     # telling flask how to load a user for login manager
@@ -34,7 +36,6 @@ def create_app():
         c = Caretaker.query.get(int(id))
         app.logger.info('%s user data', u)
         return u or c
-    
     return app
 
 def create_database(app):
