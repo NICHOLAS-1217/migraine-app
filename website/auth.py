@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-import flask
 from .models import User, Caretaker
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -49,7 +48,7 @@ def signup():
         elif len(password) < 7:
             flash("password dont\'t match", category="error")
         elif password != confirmPassword:
-            flash("password too short", category="error")
+            flash("password not same", category="error")
         else:
             new_user = User(email=email, name=name, password=generate_password_hash(password, method="sha256"))
             db.session.add(new_user)
