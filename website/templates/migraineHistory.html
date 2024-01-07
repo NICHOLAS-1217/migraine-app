@@ -11,19 +11,19 @@
 {% block body %}
     <h1>this is migraine history</h1>
     {% for status in status %}
-    <tr>
-      <td>{{ status.date }}</td>
-      <td>{{ status.severity }}</td>
-      <td>{{ status.stress }}</td>
-      <td>{{ status.light }}</td>
-      <td>{{ status.sound }}</td>
-      <td>{{ status.nausea }}</td>
-      <td>{{ status.aura }}</td>
-      <td>{{ status.visual }}</td>
-      <td>{{ status.dizzness }}</td>
-      <td>{{ status.fatigue  }}</td>
-      <td>{{ status.unconcentrated  }}</td>
-      <td>{{ status.neck }}</td>
-    </tr>
+        <tr>
+            <td>{{ status.date }}</td>
+            <td>{{ status.severity }}</td>
+            <td>{{ status.stress }}</td>
+            <td>{{ status.light }}</td>
+            <td>{{ status.sound }}</td>
+            <td>{{ status.nausea }}</td>
+            <td>{{ status.aura }}</td>
+            <td>{{ status.visual }}</td>
+            <td>{{ status.dizzness }}</td>
+            <td>{{ status.fatigue  }}</td>
+            <td>{{ status.unconcentrated  }}</td>
+            <td>{{ status.neck }}</td>
+        </tr>
   {% endfor %}
 {% endblock %}

@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, flash, session
 from flask_login import login_required, current_user
+from sqlalchemy import func
 from .models import Status
 from . import db
 
@@ -49,7 +50,9 @@ def migraine_history():
 @views.route("/migraineResult")
 @login_required
 def migraine_result():
-    return render_template("migraineResult.html", user=current_user)
+    avg_severity = db.session.query(func.avg(Status.severity).label('average_severity')).filter_by(user_id=current_user.id).scalar() or 0
+    avg_stress = db.session.query(func.avg(Status.stress).label('average_stress')).filter_by(user_id=current_user.id).scalar() or 0
+    return render_template("migraineResult.html", user=current_user, avg_severity=avg_severity, avg_stress=avg_stress)
 
 @views.route("/contactUs")
 @login_required
