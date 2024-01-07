@@ -9,6 +9,15 @@
 {% endblock %}
 
 {% block body %}
+
     <h1>this is profile</h1>
+
+    <form action="" method="POST" algin="center">
+        <div class="form-group">
+            <label for="care_id">caretaker</label>
+            <input type="text" class="form-control" id="care_email" name="care_id" placeholder="enter caretaker id">
+        </div>
+        <button type="submit" class="btn btn-primary">confirm</button>
+    </form>
     <a class="btn btn-primary" href="/logout" role="button">logout</a>
 {% endblock %}

@@ -7,13 +7,15 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     name = db.Column(db.String(150))
-    notes = db.relationship("Note")
+    caretaker_id = db.Column(db.Integer, db.ForeignKey("caretaker.id"))
+    caretaker = db.relationship("Caretaker", back_populates="user")
 
 class Caretaker(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     name = db.Column(db.String(150))
+    user = db.relationship("User", back_populates="caretaker")
 
 class Status(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,11 +31,5 @@ class Status(db.Model):
     fatigue = db.Column(db.String(1))
     unconcentrated = db.Column(db.String(1))
     neck = db.Column(db.String(1))
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-
-class Note(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, session
 from flask_login import login_required, current_user
 from sqlalchemy import func
-from .models import Status
+from .models import Status, User, Caretaker
 from . import db
 
 views = Blueprint("views", __name__)
@@ -15,7 +15,7 @@ def welcome():
 def home():
     data = request.form
     print(data)
-    if request.method =="POST":
+    if request.method == "POST":
         date = request.form.get("datepicker")
         severity = request.form.get("severity")
         stress = request.form.get("stress")
@@ -59,9 +59,24 @@ def migraine_result():
 def contact_us():
     return render_template("contactUs.html", user=current_user)
 
-@views.route("/profile")
+@views.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
+    data = request.form
+    print(data)
+    if request.method == "POST":
+        care_id = request.form.get("care_id")
+        if len(care_id) < 1:
+            flash("please enter the caretaker email to confirm", category="error")
+        else:
+            confirmed_care = Caretaker.query.filter_by(id=care_id).first()
+            if confirmed_care:
+                # Update the current user's caretaker relationship
+                current_user.caretaker = confirmed_care
+                db.session.commit()
+                flash(f"Caretaker {confirmed_care.name} confirmed successfully", category="success")
+            else:
+                flash("Invalid caretaker id, please try again", category="error")
     return render_template("profile.html", user=current_user)
 
 @views.route("/care_home")
