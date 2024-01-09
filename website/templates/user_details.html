@@ -1,0 +1,19 @@
+{% extends "care_base.html" %}
+
+{% block body %}
+    {% for i in status_details %}
+        <p>Status id: {{ i[0] }}</p>
+        <p>date: {{ i[1] }}</p>
+        <p>severity: {{ i[2] }}</p>
+        <p>stress: {{ i[3] }}</p>
+        <p>light: {{ i[4] }}</p>
+        <p>sound: {{ i[5] }}</p>
+        <p>nausea: {{ i[6] }}</p>
+        <p>aura: {{ i[7] }}</p>
+        <p>visual: {{ i[8] }}</p>
+        <p>dizzness: {{ i[9] }}</p>
+        <p>fatigue: {{ i[10] }}</p>
+        <p>unconcentrated: {{ i[11] }}</p>
+        <p>neck: {{ i[12] }}</p>
+    {% endfor %}
+{% endblock %}

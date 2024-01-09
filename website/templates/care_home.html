@@ -10,8 +10,20 @@
 
 {% block body %}
     <h1>this is care home</h1>
-    {% for result in user_migraine_result %}
-        <p>User ID: {{ result[0] }}, Name: {{ result[1] }}, Status ID: {{ result[2] }}, Date: {{ result[3] }}, Severity: {{ result[4] }}</p>
-        <!-- Add more fields as needed -->
-    {% endfor %}
+    <div class="row">
+        {% for i in user_card %}
+            <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-header">
+                <h5 class="card-title">User ID: {{ i[0] }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Name: {{ i[1] }}</h6>
+                </div>
+                <div class="card-body">
+                <!-- Add more fields as needed -->
+                <a href="{{ url_for('views.user_details', user_id=i[0]) }}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

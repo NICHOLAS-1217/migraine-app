@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, session
+from flask import Blueprint, redirect, render_template, request, flash, session, url_for
 from flask_login import login_required, current_user
 from sqlalchemy import func
 from .models import Status, User, Caretaker
@@ -85,32 +85,42 @@ def care_home():
     print(current_user)
     care_id = current_user.id
     print(care_id)
-    user_migraine_result = (
+    user_card = (
         db.session.query(
             User.id, 
-            User.name, 
-            Status.id, 
-            Status.date,
-            Status.severity,
-            Status.stress,
-            Status.light,
-            Status.sound,
-            Status.nausea,
-            Status.aura,
-            Status.visual,
-            Status.dizzness,
-            Status.fatigue,
-            Status.unconcentrated,
-            Status.neck,
-        ).join(
-            Status, User.id == Status.user_id
+            User.name
         ).filter(
             User.caretaker_id == care_id
         ).all()
     )
-    for result in user_migraine_result:
-        print(result)
-    return render_template("care_home.html", user=current_user, user_migraine_result=user_migraine_result)
+    for i in user_card:
+        print(i)
+    # user_migraine_result = (
+    #     db.session.query(
+    #         User.id, 
+    #         User.name, 
+    #         Status.id, 
+    #         Status.date,
+    #         Status.severity,
+    #         Status.stress,
+    #         Status.light,
+    #         Status.sound,
+    #         Status.nausea,
+    #         Status.aura,
+    #         Status.visual,
+    #         Status.dizzness,
+    #         Status.fatigue,
+    #         Status.unconcentrated,
+    #         Status.neck,
+    #     ).join(
+    #         Status, User.id == Status.user_id
+    #     ).filter(
+    #         User.caretaker_id == care_id
+    #     ).all()
+    # )
+    # for result in user_migraine_result:
+    #     print(result)
+    return render_template("care_home.html", user=current_user, user_card=user_card)
 
 
 @views.route("/care_update")
@@ -122,3 +132,35 @@ def care_update():
 @login_required
 def care_profile():
     return render_template("care_profile.html", user=current_user)
+
+@views.route("/user_details/<int:user_id>")
+@login_required
+def user_details(user_id):
+    print(user_id)
+    if user_id:
+        status_details = (
+            db.session.query(
+                Status.id, 
+                Status.date,
+                Status.severity,
+                Status.stress,
+                Status.light,
+                Status.sound,
+                Status.nausea,
+                Status.aura,
+                Status.visual,
+                Status.dizzness,
+                Status.fatigue,
+                Status.unconcentrated,
+                Status.neck,
+            ).filter(
+                Status.user_id == user_id
+            ).all()
+        )
+        for i in status_details:
+            print(i)
+        return render_template("user_details.html", status_details=status_details)
+    else:
+        flash("User not found", "error")
+        return redirect(url_for("views.care_home"))
+
