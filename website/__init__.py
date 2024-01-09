@@ -31,9 +31,9 @@ def create_app():
 
     # telling flask how to load a user for login manager
     @login_manager.user_loader
-    def load_user(id):
-        u =  User.query.get(int(id))
-        c = Caretaker.query.get(int(id))
+    def load_user(email):
+        u = User.query.get(email)
+        c = Caretaker.query.get(email)
         app.logger.info('%s user data', u)
         return u or c
     return app

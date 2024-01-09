@@ -82,6 +82,7 @@ def profile():
 @views.route("/care_home")
 @login_required
 def care_home():
+    print(current_user)
     return render_template("care_home.html", user=current_user)
 
 @views.route("/care_update")
