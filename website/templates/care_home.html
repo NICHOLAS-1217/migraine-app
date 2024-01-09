@@ -10,4 +10,8 @@
 
 {% block body %}
     <h1>this is care home</h1>
+    {% for result in user_migraine_result %}
+        <p>User ID: {{ result[0] }}, Name: {{ result[1] }}, Status ID: {{ result[2] }}, Date: {{ result[3] }}, Severity: {{ result[4] }}</p>
+        <!-- Add more fields as needed -->
+    {% endfor %}
 {% endblock %}

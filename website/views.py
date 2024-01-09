@@ -83,7 +83,35 @@ def profile():
 @login_required
 def care_home():
     print(current_user)
-    return render_template("care_home.html", user=current_user)
+    care_id = current_user.id
+    print(care_id)
+    user_migraine_result = (
+        db.session.query(
+            User.id, 
+            User.name, 
+            Status.id, 
+            Status.date,
+            Status.severity,
+            Status.stress,
+            Status.light,
+            Status.sound,
+            Status.nausea,
+            Status.aura,
+            Status.visual,
+            Status.dizzness,
+            Status.fatigue,
+            Status.unconcentrated,
+            Status.neck,
+        ).join(
+            Status, User.id == Status.user_id
+        ).filter(
+            User.caretaker_id == care_id
+        ).all()
+    )
+    for result in user_migraine_result:
+        print(result)
+    return render_template("care_home.html", user=current_user, user_migraine_result=user_migraine_result)
+
 
 @views.route("/care_update")
 @login_required
