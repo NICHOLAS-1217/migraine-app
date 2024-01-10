@@ -130,9 +130,28 @@ def care_update():
             flash("status updated", category="success")
     return render_template("care_update.html", user=current_user)
 
-@views.route("/care_profile")
+@views.route("/care_profile", methods=["GET", "POST"])
 @login_required
 def care_profile():
+    data = request.form
+    print(data)
+    print(int(current_user.id))
+    if request.method == "POST":
+        user_id = request.form.get("user_id")
+        if len(user_id) < 1:
+            flash("please enter the user id to add", category="error")
+        elif not user_id:
+            flash("Please enter the available user id to add", category="error")
+        else:
+            add_user = User.query.filter_by(id=user_id).first()
+            if add_user:
+                # Update the current user's caretaker relationship
+                current_user.caretaker = Caretaker.query.get(current_user.id)
+                current_user.caretaker.user.append(add_user)
+                db.session.commit()
+                flash(f"user {add_user.name} added successfully", category="success")
+            else:
+                flash("Invalid caretaker id, please try again", category="error")
     return render_template("care_profile.html", user=current_user)
 
 @views.route("/user_details/<int:user_id>")

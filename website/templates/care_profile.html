@@ -10,5 +10,12 @@
 
 {% block body %}
     <h1>this is care profile</h1>
+    <form action="" method="POST" algin="center">
+        <div class="form-group">
+            <label for="user_id">add your patient</label>
+            <input type="text" class="form-control" id="user_id" name="user_id" placeholder="enter patient id">
+        </div>
+        <button type="submit" class="btn btn-primary">confirm</button>
+    </form>
     <a class="btn btn-primary" href="/logout" role="button">logout</a>
 {% endblock %}
