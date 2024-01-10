@@ -95,37 +95,39 @@ def care_home():
     )
     for i in user_card:
         print(i)
-    # user_migraine_result = (
-    #     db.session.query(
-    #         User.id, 
-    #         User.name, 
-    #         Status.id, 
-    #         Status.date,
-    #         Status.severity,
-    #         Status.stress,
-    #         Status.light,
-    #         Status.sound,
-    #         Status.nausea,
-    #         Status.aura,
-    #         Status.visual,
-    #         Status.dizzness,
-    #         Status.fatigue,
-    #         Status.unconcentrated,
-    #         Status.neck,
-    #     ).join(
-    #         Status, User.id == Status.user_id
-    #     ).filter(
-    #         User.caretaker_id == care_id
-    #     ).all()
-    # )
-    # for result in user_migraine_result:
-    #     print(result)
     return render_template("care_home.html", user=current_user, user_card=user_card)
 
 
-@views.route("/care_update")
+@views.route("/care_update", methods=["GET", "POST"])
 @login_required
 def care_update():
+    data = request.form
+    print(data)
+    if request.method == "POST":
+        user_id = request.form.get("user_id")
+        date = request.form.get("datepicker")
+        severity = request.form.get("severity")
+        stress = request.form.get("stress")
+        light = request.form.get("light")
+        sound = request.form.get("sound")
+        nausea = request.form.get("nausea")
+        aura = request.form.get("aura")
+        visual = request.form.get("visual")
+        dizzness = request.form.get("dizzness")
+        fatigue = request.form.get("fatigue")
+        unconcentrated = request.form.get("unconcentrated")
+        neck = request.form.get("neck")
+        if len(date) < 1:
+            flash("please enter the date", category="error")
+        elif len(severity) < 1:
+            flash("please enter the severity range", category="error")
+        elif len(stress) < 1:
+            flash("please enter the stress range", category="error")
+        else:
+            new_status = Status(user_id=user_id, date=date, severity=severity, stress=stress, light=light, sound=sound, nausea=nausea, aura=aura, visual=visual, dizzness=dizzness, fatigue=fatigue, unconcentrated=unconcentrated, neck=neck)
+            db.session.add(new_status)
+            db.session.commit()
+            flash("status updated", category="success")
     return render_template("care_update.html", user=current_user)
 
 @views.route("/care_profile")
@@ -152,7 +154,7 @@ def user_details(user_id):
                 Status.dizzness,
                 Status.fatigue,
                 Status.unconcentrated,
-                Status.neck,
+                Status.neck
             ).filter(
                 Status.user_id == user_id
             ).all()
