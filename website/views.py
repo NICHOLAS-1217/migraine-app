@@ -35,7 +35,21 @@ def home():
         elif len(stress) < 1:
             flash("please enter the stress range", category="error")
         else:
-            new_status = Status(date=date, severity=severity, stress=stress, light=light, sound=sound, nausea=nausea, aura=aura, visual=visual, dizzness=dizzness, fatigue=fatigue, unconcentrated=unconcentrated, neck=neck, user_id=current_user.id)
+            new_status = Status(
+                date=date, 
+                severity=severity, 
+                stress=stress, 
+                light=light, 
+                sound=sound, 
+                nausea=nausea, 
+                aura=aura, 
+                visual=visual, 
+                dizzness=dizzness, 
+                fatigue=fatigue, 
+                unconcentrated=unconcentrated, 
+                neck=neck, 
+                user_id=current_user.id
+            )
             db.session.add(new_status)
             db.session.commit()
             flash("status updated", category="success")
@@ -124,7 +138,21 @@ def care_update():
         elif len(stress) < 1:
             flash("please enter the stress range", category="error")
         else:
-            new_status = Status(user_id=user_id, date=date, severity=severity, stress=stress, light=light, sound=sound, nausea=nausea, aura=aura, visual=visual, dizzness=dizzness, fatigue=fatigue, unconcentrated=unconcentrated, neck=neck)
+            new_status = Status(
+                user_id=user_id, 
+                date=date, 
+                severity=severity, 
+                stress=stress, 
+                light=light, 
+                sound=sound, 
+                nausea=nausea, 
+                aura=aura, 
+                visual=visual, 
+                dizzness=dizzness, 
+                fatigue=fatigue, 
+                unconcentrated=unconcentrated, 
+                neck=neck
+            )
             db.session.add(new_status)
             db.session.commit()
             flash("status updated", category="success")
