@@ -9,12 +9,15 @@
     <h1>this is User Management</h1>
 
     <p>this is patients</p>
+
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">name</th>
                 <th scope="col">email</th>
+                <th scope="col">caretaker_id</th>
+                <th scope="col">manage</th>
             </tr>
         </thead>
         <tbody>
@@ -23,18 +26,25 @@
                     <td>{{ i[0] }}</td>
                     <td>{{ i[1] }}</td>
                     <td>{{ i[2] }}</td>
+                    <td>{{ i[3] }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ url_for('views.edit_user', user_id=i[0]) }}">edit</a>
+                        <a class="btn btn-primary" href="#">de-active</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 
     <p>this is caretakers</p>
+
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">name</th>
                 <th scope="col">email</th>
+                <th scope="col">manage</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +53,10 @@
                     <td>{{ x[0] }}</td>
                     <td>{{ x[1] }}</td>
                     <td>{{ x[2] }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="#" role="button">edit</a>
+                        <a class="btn btn-primary" href="#" role="button">de-active</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

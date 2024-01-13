@@ -235,12 +235,32 @@ def user_details(user_id):
         return redirect(url_for("views.care_home"))
     
 @views.route("/admin_home")
+@login_required
 def admin_home():
-    users = User.query.with_entities(User.id, User.name, User.email).all()
+    users = User.query.with_entities(User.id, User.name, User.email, User.caretaker_id).all()
     caretakers = Caretaker.query.with_entities(Caretaker.id, Caretaker.name, Caretaker.email).all()
     for i in users:
-        print(f"User ID: {i.id}, Name: {i.name}, Email: {i.email}")
+        print(f"User ID: {i.id}, Name: {i.name}, Email: {i.email}, Care: {i.caretaker_id}")
     for x in caretakers:
         print(f"Care ID: {x.id}, Name: {x.name}, Email: {x.email}")
     return render_template("admin_home.html", users=users, caretakers=caretakers)
 
+@views.route("/edit_user/<int:user_id>", methods=["GET","POST"])
+@login_required
+def edit_user(user_id):
+    print(user_id)
+    data = request.form
+    print(data)
+    if request.method == "POST":
+        user = User.query.get(user_id)
+        new_email = request.form.get("new_email")
+        new_name = request.form.get("new_name")
+        new_caretaker_id = request.form.get("new_caretaker_id")
+        if new_email is not None and new_email != "":
+            user.email = new_email
+        if new_name is not None and new_name != "":
+            user.name = new_name
+        if new_caretaker_id is not None and new_caretaker_id != "":
+            user.caretaker_id = new_caretaker_id
+        db.session.commit()
+    return render_template("admin_edit_user.html")

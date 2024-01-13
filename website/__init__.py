@@ -51,5 +51,5 @@ def create_database(app):
                 admin = Admin(id=400, email="admin123@gmail.com", password=generate_password_hash("admin123", method="sha256"), name="admin123")
                 db.session.add(admin)
                 db.session.commit()
-                print("Admin user created")
+                print("Admin created")
 

@@ -1,0 +1,27 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}
+    edit
+{% endblock %}
+
+{% block body %}
+    <h1>this is edit user</h1>
+    <form action="" method="POST" algin="center">
+        <h3 align="center">edit</h3>
+        <div class="form-group">
+            <label for="email">email</label>
+            <input type="email" class="form-control" id="new_email" name="new_email" placeholder="edit email">
+        </div>
+        <div class="form-group">
+            <label for="name">name</label>
+            <input type="text" class="form-control" id="new_name" name="new_name" placeholder="edit name">
+        </div>
+        <div class="form-group">
+            <label for="care_id">caretaker id</label>
+            <input type="text" class="form-control" id="new_caretaker_id" name="new_caretaker_id" placeholder="edit caretaker by id">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">submit</button>
+        <a class="btn btn-primary" href="/admin_home" role="button">back</a>
+    </form>
+{% endblock %}
