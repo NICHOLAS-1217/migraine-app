@@ -236,5 +236,11 @@ def user_details(user_id):
     
 @views.route("/admin_home")
 def admin_home():
-    return render_template("admin_home.html")
+    users = User.query.with_entities(User.id, User.name, User.email).all()
+    caretakers = Caretaker.query.with_entities(Caretaker.id, Caretaker.name, Caretaker.email).all()
+    for i in users:
+        print(f"User ID: {i.id}, Name: {i.name}, Email: {i.email}")
+    for x in caretakers:
+        print(f"Care ID: {x.id}, Name: {x.name}, Email: {x.email}")
+    return render_template("admin_home.html", users=users, caretakers=caretakers)
 

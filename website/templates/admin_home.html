@@ -8,4 +8,44 @@
 
     <h1>this is User Management</h1>
 
+    <p>this is patients</p>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in users %}
+                <tr>
+                    <td>{{ i[0] }}</td>
+                    <td>{{ i[1] }}</td>
+                    <td>{{ i[2] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p>this is caretakers</p>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in caretakers %}
+                <tr>
+                    <td>{{ x[0] }}</td>
+                    <td>{{ x[1] }}</td>
+                    <td>{{ x[2] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock  %}
