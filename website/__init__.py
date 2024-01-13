@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 DB_NAME = "migraine.db"
@@ -19,7 +20,7 @@ def create_app():
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
 
-    from .models import User, Caretaker
+    from .models import User, Caretaker, Admin
 
     create_database(app)
 
@@ -34,8 +35,8 @@ def create_app():
     def load_user(email):
         u = User.query.get(email)
         c = Caretaker.query.get(email)
-        app.logger.info('%s user data', u)
-        return u or c
+        a = Admin.query.get(email)
+        return u or c or a
     return app
 
 def create_database(app):
@@ -43,4 +44,12 @@ def create_database(app):
         with app.app_context():
             db.create_all()
             print("database created")
+            from .models import Admin
+            #create admin from id 400 when create database
+            admin = Admin.query.filter_by(id=400).first()
+            if admin is None:   
+                admin = Admin(id=400, email="admin123@gmail.com", password=generate_password_hash("admin123", method="sha256"), name="admin123")
+                db.session.add(admin)
+                db.session.commit()
+                print("Admin user created")
 

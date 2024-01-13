@@ -28,12 +28,33 @@ def home():
         fatigue = request.form.get("fatigue")
         unconcentrated = request.form.get("unconcentrated")
         neck = request.form.get("neck")
+        first_status = Status.query.filter_by(id=300).first()
         if len(date) < 1:
             flash("please enter the date", category="error")
         elif len(severity) < 1:
             flash("please enter the severity range", category="error")
         elif len(stress) < 1:
             flash("please enter the stress range", category="error")
+        elif first_status is None:
+            first_status = Status(
+                id=300,
+                date=date, 
+                severity=severity, 
+                stress=stress, 
+                light=light, 
+                sound=sound, 
+                nausea=nausea, 
+                aura=aura, 
+                visual=visual, 
+                dizzness=dizzness, 
+                fatigue=fatigue, 
+                unconcentrated=unconcentrated, 
+                neck=neck, 
+                user_id=current_user.id
+            )
+            db.session.add(first_status)
+            db.session.commit()
+            print("frist status created")
         else:
             new_status = Status(
                 date=date, 
@@ -212,4 +233,8 @@ def user_details(user_id):
     else:
         flash("User not found", "error")
         return redirect(url_for("views.care_home"))
+    
+@views.route("/admin_home")
+def admin_home():
+    return render_template("admin_home.html")
 

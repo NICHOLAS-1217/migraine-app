@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User, Caretaker
+from .models import User, Caretaker, Admin
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -38,6 +38,7 @@ def signup():
         name = request.form.get("name")
         password = request.form.get("password")
         confirmPassword = request.form.get("confirmPassword")
+        first_user = User.query.filter_by(id=100).first()
         user = User.query.filter_by(email=email).first()
         if user:
             flash("email already exists", category="error")
@@ -49,6 +50,12 @@ def signup():
             flash("password dont\'t match", category="error")
         elif password != confirmPassword:
             flash("password not same", category="error")
+        elif first_user is None:
+            first_user = User(id=100, name=name, email=email, password=generate_password_hash(password, method="sha256"))
+            db.session.add(first_user)
+            db.session.commit()
+            print("frist user created")
+            return redirect(url_for("views.home"))
         else:
             new_user = User(email=email, name=name, password=generate_password_hash(password, method="sha256"))
             db.session.add(new_user)
@@ -84,6 +91,7 @@ def care_signup():
         name = request.form.get("name")
         password = request.form.get("password")
         confirmPassword = request.form.get("confirmPassword")
+        first_caretaker = Caretaker.query.filter_by(id=200).first()
         caretaker = Caretaker.query.filter_by(email=email).first()
         if caretaker:
             flash("email already exists", category="error")
@@ -95,6 +103,12 @@ def care_signup():
             flash("password dont\'t match", category="error")
         elif password != confirmPassword:
             flash("password too short", category="error")
+        elif first_caretaker is None:
+            first_caretaker = Caretaker(id=200, name=name, email=email, password=generate_password_hash(password, method="sha256"))
+            db.session.add(first_caretaker)
+            db.session.commit()
+            print("first caretaker created")
+            return redirect(url_for("views.care_home"))
         else:
             new_caretaker = Caretaker(email=email, name=name, password=generate_password_hash(password, method="sha256"))
             db.session.add(new_caretaker)
@@ -103,3 +117,20 @@ def care_signup():
             flash("account created", category="success")
             return redirect(url_for("views.care_home"))
     return render_template("care_signup.html")
+
+@auth.route("/admin_login", methods=["GET", "POST"])
+def admin_login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        admin = Admin.query.filter_by(email=email).first()
+        if admin:
+            if check_password_hash(admin.password, password):
+                flash("logged in succesfully", category="success")
+                login_user(admin)
+                return redirect(url_for("views.admin_home"))
+            else:
+                flash("incorrect password, try again", category="error")
+        else:
+            flash("email dose not exist", category="error")
+    return render_template("admin_login.html")

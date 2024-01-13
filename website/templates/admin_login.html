@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    login
+    Admin Login
 {% endblock  %}
 
 {% block body %}
-    <h1>this is login</h1>
+    <h1>this is admin login</h1>
     <form action="" method="post" algin="center">
         <h3 align="center">login</h3>
         <div class="form-group">
@@ -18,8 +18,6 @@
         </div>
         <br>
         <button type="submit" class="btn btn-primary">login</button>
-        <a class="btn btn-primary" href="/care_login" role="button">caretaker</a>
-        <a class="btn btn-primary" href="/admin_login" role="button">admin</a>
-        <a class="btn btn-primary" href="/" role="button">back</a>
+        <a class="btn btn-primary" href="/login" role="button">back</a>
     </form>
 {% endblock  %}
