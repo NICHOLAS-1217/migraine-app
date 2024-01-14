@@ -47,6 +47,7 @@
                 <th scope="col">id</th>
                 <th scope="col">name</th>
                 <th scope="col">email</th>
+                <th scope="col">active</th>
                 <th scope="col">manage</th>
             </tr>
         </thead>
@@ -56,9 +57,11 @@
                     <td>{{ x[0] }}</td>
                     <td>{{ x[1] }}</td>
                     <td>{{ x[2] }}</td>
+                    <td>{{ x[3] }}</td>
                     <td>
-                        <a class="btn btn-primary" href="#" role="button">edit</a>
-                        <a class="btn btn-primary" href="#" role="button">de-active</a>
+                        <a class="btn btn-primary" href="{{ url_for('views.edit_care', care_id=x[0]) }}">edit</a>
+                        <a class="btn btn-primary" href="{{ url_for('views.de_active_care', care_id=x[0]) }}">de-active</a>
+                        <a class="btn btn-primary" href="{{ url_for('views.re_active_care', care_id=x[0]) }}">re-active</a>
                     </td>
                 </tr>
             {% endfor %}

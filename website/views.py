@@ -283,3 +283,38 @@ def re_active(user_id):
     db.session.commit()
     return redirect(url_for("views.admin_home"))
 
+@views.route("/edit_care/<int:care_id>", methods=["GET","POST"])
+@login_required
+def edit_care(care_id):
+    print(care_id)
+    data = request.form
+    print(data)
+    if request.method == "POST":
+        caretaker = Caretaker.query.get(care_id)
+        new_email = request.form.get("new_email")
+        new_name = request.form.get("new_name")
+        if new_email is not None and new_email != "":
+            caretaker.email = new_email
+        if new_name is not None and new_name != "":
+            caretaker.name = new_name
+        db.session.commit()
+    return render_template("admin_edit_care.html")
+
+@views.route("/de_active_care/<int:care_id>")
+@login_required
+def de_active_care(care_id):
+    print(care_id)
+    caretaker = Caretaker.query.get(care_id)
+    caretaker.isActive = False
+    db.session.commit()
+    return redirect(url_for("views.admin_home"))
+
+@views.route("/re_active_care/<int:care_id>")
+@login_required
+def re_active_care(care_id):
+    print(care_id)
+    caretaker = Caretaker.query.get(care_id)
+    caretaker.isActive = True
+    db.session.commit()
+    return redirect(url_for("views.admin_home"))
+
