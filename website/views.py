@@ -237,12 +237,12 @@ def user_details(user_id):
 @views.route("/admin_home")
 @login_required
 def admin_home():
-    users = User.query.with_entities(User.id, User.name, User.email, User.caretaker_id).all()
-    caretakers = Caretaker.query.with_entities(Caretaker.id, Caretaker.name, Caretaker.email).all()
+    users = User.query.with_entities(User.id, User.name, User.email, User.caretaker_id, User.isActive).all()
+    caretakers = Caretaker.query.with_entities(Caretaker.id, Caretaker.name, Caretaker.email, Caretaker.isActive).all()
     for i in users:
-        print(f"User ID: {i.id}, Name: {i.name}, Email: {i.email}, Care: {i.caretaker_id}")
+        print(f"User ID: {i.id}, Name: {i.name}, Email: {i.email}, Care: {i.caretaker_id}, isActive: {i.isActive}")
     for x in caretakers:
-        print(f"Care ID: {x.id}, Name: {x.name}, Email: {x.email}")
+        print(f"Care ID: {x.id}, Name: {x.name}, Email: {x.email}, isActive: {x.isActive}")
     return render_template("admin_home.html", users=users, caretakers=caretakers)
 
 @views.route("/edit_user/<int:user_id>", methods=["GET","POST"])
@@ -264,3 +264,22 @@ def edit_user(user_id):
             user.caretaker_id = new_caretaker_id
         db.session.commit()
     return render_template("admin_edit_user.html")
+
+@views.route("/de_active/<int:user_id>")
+@login_required
+def de_active(user_id):
+    print(user_id)
+    user = User.query.get(user_id)
+    user.isActive = False
+    db.session.commit()
+    return redirect(url_for("views.admin_home"))
+
+@views.route("/re_active/<int:user_id>")
+@login_required
+def re_active(user_id):
+    print(user_id)
+    user = User.query.get(user_id)
+    user.isActive = True
+    db.session.commit()
+    return redirect(url_for("views.admin_home"))
+

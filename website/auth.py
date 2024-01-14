@@ -107,6 +107,7 @@ def care_signup():
             first_caretaker = Caretaker(id=200, name=name, email=email, password=generate_password_hash(password, method="sha256"))
             db.session.add(first_caretaker)
             db.session.commit()
+            login_user(first_caretaker)
             print("first caretaker created")
             return redirect(url_for("views.care_home"))
         else:

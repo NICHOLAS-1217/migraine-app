@@ -6,6 +6,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     name = db.Column(db.String(150))
+    isActive = db.Column(db.Boolean, default=True)
     caretaker_id = db.Column(db.Integer, db.ForeignKey("caretaker.id"))
     caretaker = db.relationship("Caretaker", back_populates="user")
 
@@ -14,6 +15,7 @@ class Caretaker(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     name = db.Column(db.String(150))
+    isActive = db.Column(db.Boolean, default=True)
     user = db.relationship("User", back_populates="caretaker")
 
 class Admin(db.Model, UserMixin):
