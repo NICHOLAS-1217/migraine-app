@@ -5,19 +5,28 @@
 {% endblock  %}
 
 {% block body %}
-    <h1>this is caretaker login</h1>
     <form action="" method="post" algin="center">
-        <h3 align="center">caretaker login</h3>
-        <div class="form-group">
-            <label for="email">email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="enter email">
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="btn-group d-flex justify-content-center">
+                <a href="/login" class="btn btn-outline-dark" aria-current="page">patient</a>
+                <a href="/care_login" class="btn btn-dark">caretaker</a>
+                <a href="/admin_login" class="btn btn-outline-dark">admin</a>
+            </div>
+            <div class="p-5 m-5 bg-black text-white rounded-4 shadow-lg">
+                <h3 align="center">caretaker login</h3>
+                <div class="form-group">
+                    <label for="email">email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password1">password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="enter password">
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark">login</button>
+                <a class="btn btn-dark" href="/login" role="button">back</a>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="password1">password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="enter password">
-        </div>
-        <br>
-        <button type="submit" class="btn btn-primary">login</button>
-        <a class="btn btn-primary" href="/login" role="button">back</a>
     </form>
 {% endblock  %}
