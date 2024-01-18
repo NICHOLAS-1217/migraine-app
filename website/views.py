@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from sqlalchemy import func
 from .models import Status, User, Caretaker
 from . import db
+from datetime import datetime
 
 views = Blueprint("views", __name__)
 
@@ -15,8 +16,9 @@ def welcome():
 def home():
     data = request.form
     print(data)
+    today = datetime.today().strftime('%m-%d-%Y')
     if request.method == "POST":
-        date = request.form.get("datepicker")
+        date = request.form.get(str("my_hidden_input"))
         severity = request.form.get("severity")
         stress = request.form.get("stress")
         light = request.form.get("light")
@@ -29,9 +31,7 @@ def home():
         unconcentrated = request.form.get("unconcentrated")
         neck = request.form.get("neck")
         first_status = Status.query.filter_by(id=300).first()
-        if len(date) < 1:
-            flash("please enter the date", category="error")
-        elif len(severity) < 1:
+        if len(severity) < 1:
             flash("please enter the severity range", category="error")
         elif len(stress) < 1:
             flash("please enter the stress range", category="error")
@@ -74,7 +74,7 @@ def home():
             db.session.add(new_status)
             db.session.commit()
             flash("status updated", category="success")
-    return render_template("home.html", user=current_user)
+    return render_template("home.html", user=current_user, today=today)
 
 @views.route("/migraineHistory")
 @login_required
