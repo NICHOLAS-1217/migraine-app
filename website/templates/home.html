@@ -9,86 +9,112 @@
 {% endblock  %}
 
 {% block body %}
-    <h1>this is home</h1>
-    <form action="" method="POST" algin="center">
-        <div class="form-group">
-            <div id="datepicker" data-date="{{ today }}"></div>
-            <input type="hidden" id="my_hidden_input" name="my_hidden_input">
+    <form action="" method="POST">
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="row">
+                <div class="col">
+                    <div class="p-4 m-5 bg-black text-white rounded-4 shadow-lg">
+                        <div class="form-group">
+                            <h1>pick date</h1>
+                            <hr>
+                            <div id="datepicker" data-date="{{ today }}"></div>
+                            <input type="hidden" id="my_hidden_input" name="my_hidden_input">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-4 m-5 bg-black text-white rounded-4 shadow-lg">
+                        <div class="form-group">
+                            <h1>symptoms</h1>
+                            <hr>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" value="T" id="light" name="light">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Sensitivity to Light
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" value="T" id="sound" name="sound">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Sensitivity to Sound
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" value="T" id="nausea" name="nausea">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Nausea
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" value="T" id="aura" name="aura">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Aura
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" value="T" id="viual" name="visual">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Visual Changes
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" value="T" id="dizziness" name="dizzness">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Dizziness
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" value="T" id="fatigue" name="fatigue">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Fatigue
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" value="T" id="unconcentrated" name="unconcentrated">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Unconcentrated
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" value="T" id="neck" name="neck">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Neck Stiffness
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="p-5 m-5  bg-black text-white rounded-4 shadow-lg">
+                        <div class="form-group">
+                            <label for="">severity of migraine</label>
+                            <span id="rangeValue">5</span>
+                            <input type="range" class="form-range" min="0" max="10" id="severity" name="severity">
+                        </div>
+                        <div class="form-group">
+                            <label for="">stress level</label>
+                            <span id="stressValue">5</span>
+                            <input type="range" class="form-range" min="0" max="10" id="stress" name="stress">
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark">submit</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="">severity of migraine</label>
-            <input type="range" class="form-range" min="0" max="10" id="severity" name="severity">
-            <span id="rangeValue">5</span>
-        </div>
-        <div class="form-group">
-            <label for="">stress level</label>
-            <input type="range" class="form-range" min="0" max="10" id="stress" name="stress">
-            <span id="stressValue">5</span>
-        </div>  
-        <div class="form-group">
-            <label for="">symptoms</label>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="T" id="light" name="light">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Sensitivity to Light
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="T" id="sound" name="sound">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Sensitivity to Sound
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="T" id="nausea" name="nausea">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Nausea
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="T" id="aura" name="aura">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Aura
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="T" id="viual" name="visual">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Visual Changes
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="T" id="dizziness" name="dizzness">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Dizziness
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="T" id="fatigue" name="fatigue">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Fatigue
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="T" id="unconcentrated" name="unconcentrated">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Unconcentrated
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="T" id="neck" name="neck">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Neck Stiffness
-                </label>
-            </div>
-        </div>  
-        <button type="submit" class="btn btn-primary">submit</button>
     </form>
     <script src="../static/js/range.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../static/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $('#datepicker').datepicker();
+        $('#datepicker').datepicker(
+            {
+                todayHighlight: true,
+            }
+        );
         $('#datepicker').on('changeDate', function() {
             $('#my_hidden_input').val(
                 $('#datepicker').datepicker('getFormattedDate')

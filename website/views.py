@@ -31,7 +31,9 @@ def home():
         unconcentrated = request.form.get("unconcentrated")
         neck = request.form.get("neck")
         first_status = Status.query.filter_by(id=300).first()
-        if len(severity) < 1:
+        if date == "":
+            flash("please enter the date", category="error")
+        elif len(severity) < 1:
             flash("please enter the severity range", category="error")
         elif len(stress) < 1:
             flash("please enter the stress range", category="error")
