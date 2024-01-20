@@ -9,8 +9,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>this is migraine history</h1>
-    <div class="row">
+    <div class="row m-4">
         {% for status in status %}
             <div class="col-md-4 mb-3">
                 <div class="card">
@@ -23,7 +22,7 @@
                             view details
                         </button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">{{ status.date }}</h1>

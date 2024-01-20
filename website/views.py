@@ -320,8 +320,3 @@ def re_active_care(care_id):
     db.session.commit()
     return redirect(url_for("views.admin_home"))
 
-@views.route("/status_details/<int:status_id>")
-@login_required
-def status_details():
-    return "haha"
-

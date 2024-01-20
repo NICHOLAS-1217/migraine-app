@@ -10,13 +10,12 @@
 
 {% block body %}
     <form action="" method="POST">
-        <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="position-absolute top-50 start-50 translate-middle m-4">
             <div class="row">
                 <div class="col">
                     <div class="p-4 m-5 bg-black text-white rounded-4 shadow-lg">
                         <div class="form-group">
                             <h1>pick date</h1>
-                            <hr>
                             <div id="datepicker" data-date="{{ today }}"></div>
                             <input type="hidden" id="my_hidden_input" name="my_hidden_input">
                         </div>
@@ -26,17 +25,16 @@
                     <div class="p-4 m-5 bg-black text-white rounded-4 shadow-lg">
                         <div class="form-group">
                             <h1>symptoms</h1>
-                            <hr>
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch" value="T" id="light" name="light">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    Sensitivity to Light
+                                    Sensitivity Light
                                 </label>
                             </div>
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch" value="T" id="sound" name="sound">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    Sensitivity to Sound
+                                    Sensitivity Sound
                                 </label>
                             </div>
                             <div class="form-check form-switch">
