@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <title>
+        
+    login
+
+    </title>
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between align-items-center data-bs-theme="dark"">
+        <div class="collapse navbar-collapse container-fluid" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <a class="navbar-brand">
+                    <img src="../static/img/whiteLogo4%.png" alt="migraiane logo">
+                    Migraine App
+                </a>
+                <li class="nav-item">
+                    <a class="nav-link " href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/migraineHistory">Migraine History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/migraineResult">Migraine Result</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/contactUs">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto d-flex">
+                <li class="nav-item">
+                    <a class="nav-link " href="/profile">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- flash messages -->
+     
+         
+             
+                
+                    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                        User needs to be logged in to view this page
+                        <button type="button" class="close" data-bs-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                 
+             
+         
+    
+    <!-- body -->
+    <div class="container">
+        
+    <form action="" method="post" algin="center">
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="btn-group d-flex justify-content-center">
+                <a href="/login" class="btn btn-dark" aria-current="page">patient</a>
+                <a href="/care_login" class="btn btn-outline-dark">caretaker</a>
+                <a href="/admin_login" class="btn btn-outline-dark">admin</a>
+            </div>
+            <div class="p-5 m-5 bg-black text-white rounded-4 shadow-lg">
+                <div class="d-flex justify-content-center">
+                    <img src="../static/img/patient25%.png" alt="migraine logo">
+                </div>
+                <div class="form-group">
+                    <label for="email">email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password1">password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="enter password">
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark">login</button>
+                <a class="btn btn-dark" href="/" role="button">back</a>
+            </div>
+        </div>
+    </form>
+    
+    </div>
+</body>
+</html>
