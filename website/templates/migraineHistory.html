@@ -18,14 +18,14 @@
                         <h6 class="card-subtitle mb-2 text-muted">Status Date: {{ status.date }}</h6>
                     </div>
                     <div class="card-body">
-                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal{{ status.id }}">
                             view details
                         </button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal{{ status.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ status.id }}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ status.date }}</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel{{ status.id }}">{{ status.date }}</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
