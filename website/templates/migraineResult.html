@@ -9,23 +9,25 @@
 {% endblock %}
 
 {% block body %}
-    <h1>this is migraine result</h1>
-    <p>Average Stress: {{ avg_stress }}</p>
-    <p>Average Severity: {{ avg_severity }}</p>
-    <div class="gauge-container">
-        <div class="gauge-a"></div>
-        <div class="gauge-b"></div>
-        <div class="gauge-c"></div>
-        <div class="gauge-data">
-            <h1 id="percent">{{ "{:.2f}".format((avg_stress / 10) * 100) }}%</h1>
+    <div class="position-absolute top-50 start-50 translate-middle m-4">
+        <div class="row">
+            <div class="col">
+                <div class="progress-container">
+                    <div class="circular-progress" data-progress-value="{{ (avg_stress*10) | round | int }}">
+                        <span class="progress-value">0%</span>
+                    </div>
+                    <h6>average stress percentage</h6>
+                </div>
+            </div>
+            <div class="col">
+                <div class="progress-container">
+                    <div class="circular-progress" data-progress-value="{{ (avg_severity*10) | round | int }}">
+                        <span class="progress-value">0%</span>
+                    </div>
+                    <h6>average severity percentage</h6>
+                </div>
+            </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the gauge-container element
-            var gaugeContainer = document.querySelector('.gauge-container');
-            // Add the "animate" class to trigger the animation
-            gaugeContainer.classList.add('animate');
-        });
-    </script>
+    <script src="../static/js/progress.js"></script>
 {% endblock %}
