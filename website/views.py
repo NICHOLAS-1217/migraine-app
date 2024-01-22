@@ -100,6 +100,7 @@ def contact_us():
 @login_required
 def profile():
     data = request.form
+    information = User.query.filter_by(id=current_user.id).all()
     print(data)
     if request.method == "POST":
         care_id = request.form.get("care_id")
@@ -114,7 +115,7 @@ def profile():
                 flash(f"Caretaker {confirmed_care.name} confirmed successfully", category="success")
             else:
                 flash("Invalid caretaker id, please try again", category="error")
-    return render_template("profile.html", user=current_user)
+    return render_template("profile.html", user=current_user, information=information)
 
 @views.route("/care_home")
 @login_required

@@ -9,15 +9,27 @@
 {% endblock %}
 
 {% block body %}
-
-    <h1>this is profile</h1>
-
+    <div class="text-center m-2">
+        <img src="../static/img/profile23%.png" alt="migraine logo">
+        {% for i in information %}
+            <h1>@{{ i.name }}</h1>
+            <hr>
+            <p>user id: {{ i.id }}</p>
+            <p>email: {{ i.email }}</p>
+            <p>caretaker id: {{ i.caretaker_id }}</p>
+        {% endfor %}
+    </div>
     <form action="" method="POST" algin="center">
         <div class="form-group">
-            <label for="care_id">confirm your caretaker</label>
-            <input type="text" class="form-control" id="care_id" name="care_id" placeholder="enter caretaker id">
+            <!-- <label for="care_id">confirm your caretaker</label>
+            <input type="text" class="form-control" id="care_id" name="care_id" placeholder="enter caretaker id"> -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="confirm your caretaker's id" aria-label="caretaker id" aria-describedby="button-addon2" name="care_id">
+                <button class="btn btn-dark" type="submit" id="button-addon2">confirm</button>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">add</button>
     </form>
-    <a class="btn btn-primary" href="/logout" role="button">logout</a>
+    <div class="text-center">
+        <a class="btn btn-dark" href="/logout" role="button">logout</a>
+    </div>
 {% endblock %}
