@@ -9,27 +9,36 @@
 {% endblock %}
 
 {% block body %}
-    <div class="text-center m-2">
-        <img src="../static/img/profile23%.png" alt="migraine logo">
-        {% for i in information %}
-            <h1>@{{ i.name }}</h1>
-            <hr>
-            <p>user id: {{ i.id }}</p>
-            <p>email: {{ i.email }}</p>
-            <p>caretaker id: {{ i.caretaker_id }}</p>
-        {% endfor %}
-    </div>
-    <form action="" method="POST" algin="center">
-        <div class="form-group">
-            <!-- <label for="care_id">confirm your caretaker</label>
-            <input type="text" class="form-control" id="care_id" name="care_id" placeholder="enter caretaker id"> -->
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="confirm your caretaker's id" aria-label="caretaker id" aria-describedby="button-addon2" name="care_id">
-                <button class="btn btn-dark" type="submit" id="button-addon2">confirm</button>
+    {% for i in information %}
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="row">
+                <div class="col">
+                    <div class="text-center p-5 m-5 border border-start-0 border-black border-3">
+                        <img src="../static/img/profile23%.png" alt="migraine logo">
+                        <h1>@{{ i.name }}</h1>
+                    </div>
+                </div>
+                <div class="col p-5 m-5 p-5 m-5 border border-end-0 border-black border-3">
+                    <p><img src="../static/img/id.png" alt="migraine logo"> {{ i.id }} (user id)</p>
+                    <p><img src="../static/img/email5%.png" alt="migraine logo"> {{ i.email }}</p>
+                    <p><img src="../static/img/careid5%.png" alt="migraine logo"> {{ i.caretaker_id }} (caretaker id)</p>
+                    <form action="" method="POST">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="caretaker's id" aria-label="caretaker id" aria-describedby="button-addon2" name="care_id">
+                                <button class="btn btn-dark" type="submit" id="button-addon2">confirm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="text-center p-5">
+                        <a class="btn btn-dark" href="/logout" role="button">logout</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
-    <div class="text-center">
-        <a class="btn btn-dark" href="/logout" role="button">logout</a>
-    </div>
+    {% endfor %}
 {% endblock %}
