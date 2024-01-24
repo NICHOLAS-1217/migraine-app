@@ -1,19 +1,42 @@
 {% extends "care_base.html" %}
 
 {% block body %}
-    {% for i in status_details %}
-        <p>Status id: {{ i[0] }}</p>
-        <p>date: {{ i[1] }}</p>
-        <p>severity: {{ i[2] }}</p>
-        <p>stress: {{ i[3] }}</p>
-        <p>light: {{ i[4] }}</p>
-        <p>sound: {{ i[5] }}</p>
-        <p>nausea: {{ i[6] }}</p>
-        <p>aura: {{ i[7] }}</p>
-        <p>visual: {{ i[8] }}</p>
-        <p>dizzness: {{ i[9] }}</p>
-        <p>fatigue: {{ i[10] }}</p>
-        <p>unconcentrated: {{ i[11] }}</p>
-        <p>neck: {{ i[12] }}</p>
-    {% endfor %}
+    <table class="table ">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">status id</th>
+                <th scope="col">date</th>
+                <th scope="col">severity</th>
+                <th scope="col">stress</th>
+                <th scope="col">light</th>
+                <th scope="col">sound</th>
+                <th scope="col">nausea</th>
+                <th scope="col">aura</th>
+                <th scope="col">visual</th>
+                <th scope="col">dizzness</th>
+                <th scope="col">fatigue</th>
+                <th scope="col">unconcentrated</th>
+                <th scope="col">neck</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for i in status_details %}
+                <tr>
+                    <td>{{ i[0] }}</th>
+                    <td>{{ i[1] }}</td>
+                    <td>{{ i[2] }}</td>
+                    <td>{{ i[3] }}</td>
+                    <td>{{ i[4] }}</td>
+                    <td>{{ i[5] }}</td>
+                    <td>{{ i[6] }}</td>
+                    <td>{{ i[7] }}</td>
+                    <td>{{ i[8] }}</td>
+                    <td>{{ i[9] }}</td>
+                    <td>{{ i[10] }}</td>
+                    <td>{{ i[11] }}</td>
+                    <td>{{ i[12] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

@@ -9,7 +9,11 @@
 {% endblock %}
 
 {% block body %}
-    <h1>this is care home</h1>
+    <div class="text-center m-3">
+        <img src="../static/img/yourPatient25%.png" alt="migraine logo">
+        <h1>Your Patients</h1>
+    </div>
+    <hr>
     <div class="row">
         {% for i in user_card %}
             <div class="col-md-4 mb-3">
@@ -20,7 +24,7 @@
                     </div>
                     <div class="card-body">
                         <!-- Add more fields as needed -->
-                        <a href="{{ url_for('views.user_details', user_id=i[0]) }}" class="btn btn-primary">View Details</a>
+                        <a href="{{ url_for('views.user_details', user_id=i[0]) }}" class="btn btn-dark">View Details</a>
                     </div>
                 </div>
             </div>
