@@ -143,7 +143,7 @@ def care_update():
     print(data)
     if request.method == "POST":
         user_id = request.form.get("user_id")
-        date = request.form.get("datepicker")
+        date = request.form.get(str("my_hidden_input"))
         severity = request.form.get("severity")
         stress = request.form.get("stress")
         light = request.form.get("light")
@@ -155,7 +155,7 @@ def care_update():
         fatigue = request.form.get("fatigue")
         unconcentrated = request.form.get("unconcentrated")
         neck = request.form.get("neck")
-        if len(date) < 1:
+        if date == "":
             flash("please enter the date", category="error")
         elif len(severity) < 1:
             flash("please enter the severity range", category="error")
