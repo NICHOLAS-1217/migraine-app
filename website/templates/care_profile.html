@@ -13,32 +13,44 @@
         <div class="col">
             <div class="text-center m-3">
                 <img src="../static/img/careProfile25%.png" alt="migraine logo">
-                <h1>Care Profile</h1>
+                {% for i in information %}
+                    <h1>@{{ i.name }}</h1>
+                {% endfor %}
             </div>
             <hr>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in patient_info %}
-                    <tr>
-                        <td>{{ i[0] }}</td>
-                        <td>{{ i[1] }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="p-5 border border-start-0 border-black border-3">
+                <h4>Information</h4>
+                <hr>
+                {% for i in information %}
+                    <p><img src="../static/img/id.png" alt="migraine logo"> {{ i.id }} (care id)</p>
+                    <p><img src="../static/img/email5%.png" alt="migraine logo"> {{ i.email }}</p>
+                {% endfor %}
+            </div>
         </div>
         <div class="col">
             <form action="" method="POST">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">name</th>
+                            <th scope="col">email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in patient_info %}
+                        <tr>
+                            <td>{{ i[0] }}</td>
+                            <td>{{ i[1] }}</td>
+                            <td>{{ i[2] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
                 <div class="form-group">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="enter patient id" aria-label="user id" aria-describedby="button-addon2" name="user_id">
@@ -48,7 +60,7 @@
             </form>
         </div>
     </div>
-    <div class="text-center">
+    <div class="text-center p-5 m-5">
         <a class="btn btn-dark" href="/logout" role="button">logout</a>
     </div>
 {% endblock %}

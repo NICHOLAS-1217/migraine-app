@@ -187,12 +187,14 @@ def care_update():
 def care_profile():
     data = request.form
     print(data)
+    information = Caretaker.query.filter_by(id=current_user.id).all()
     print(int(current_user.id))
     care_id = current_user.id
     patient_info = (
         db.session.query(
             User.id, 
-            User.name
+            User.name,
+            User.email
         ).filter(
             User.caretaker_id == care_id
         ).all()
@@ -213,7 +215,7 @@ def care_profile():
                 flash(f"user {add_user.name} added successfully", category="success")
             else:
                 flash("Invalid caretaker id, please try again", category="error")
-    return render_template("care_profile.html", user=current_user, patient_info=patient_info)
+    return render_template("care_profile.html", user=current_user, patient_info=patient_info, information=information)
 
 @views.route("/user_details/<int:user_id>")
 @login_required
