@@ -48,7 +48,7 @@ def create_database(app):
             #create admin from id 400 when create database
             admin = Admin.query.filter_by(id=400).first()
             if admin is None:   
-                admin = Admin(id=400, email="admin123@gmail.com", password=generate_password_hash("admin123", method="sha256"), name="admin123")
+                admin = Admin(id=400, email="admin123@gmail.com", password=generate_password_hash("admin123", method="pbkdf2:sha256"), name="admin123")
                 db.session.add(admin)
                 db.session.commit()
                 print("Admin created")

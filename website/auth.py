@@ -51,13 +51,13 @@ def signup():
         elif password != confirmPassword:
             flash("password not same", category="error")
         elif first_user is None:
-            first_user = User(id=100, name=name, email=email, password=generate_password_hash(password, method="sha256"))
+            first_user = User(id=100, name=name, email=email, password=generate_password_hash(password, method="pbkdf2:sha256"))
             db.session.add(first_user)
             db.session.commit()
             print("frist user created")
             return redirect(url_for("views.home"))
         else:
-            new_user = User(email=email, name=name, password=generate_password_hash(password, method="sha256"))
+            new_user = User(email=email, name=name, password=generate_password_hash(password, method="pbkdf2:sha256"))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
@@ -104,14 +104,14 @@ def care_signup():
         elif password != confirmPassword:
             flash("password too short", category="error")
         elif first_caretaker is None:
-            first_caretaker = Caretaker(id=200, name=name, email=email, password=generate_password_hash(password, method="sha256"))
+            first_caretaker = Caretaker(id=200, name=name, email=email, password=generate_password_hash(password, method="pbkdf2:sha256"))
             db.session.add(first_caretaker)
             db.session.commit()
             login_user(first_caretaker)
             print("first caretaker created")
             return redirect(url_for("views.care_home"))
         else:
-            new_caretaker = Caretaker(email=email, name=name, password=generate_password_hash(password, method="sha256"))
+            new_caretaker = Caretaker(email=email, name=name, password=generate_password_hash(password, method="pbkdf2:sha256"))
             db.session.add(new_caretaker)
             db.session.commit()
             login_user(new_caretaker)
