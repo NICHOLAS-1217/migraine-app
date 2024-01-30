@@ -5,19 +5,26 @@
 {% endblock %}
 
 {% block body %}
-    <h1>this is edit caretaker</h1>
+    <div class="text-center m-3">
+        <img src="../static/img/edit25%.png" alt="migraine logo">
+    </div>
+    <h1 align="center">Edit Caretaker</h1>
+    <hr>
     <form action="" method="POST" algin="center">
-        <h3 align="center">edit caretaker</h3>
-        <div class="form-group">
-            <label for="email">email</label>
-            <input type="email" class="form-control" id="new_email" name="new_email" placeholder="edit email">
+        <div class="border border-black border-3 p-5 m-5">
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="email" class="form-control" id="new_email" name="new_email" placeholder="edit email">
+            </div>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="text" class="form-control" id="new_name" name="new_name" placeholder="edit name">
+            </div>
+            <br>
         </div>
-        <div class="form-group">
-            <label for="name">name</label>
-            <input type="text" class="form-control" id="new_name" name="new_name" placeholder="edit name">
-        </div>
-        <br>
-        <button type="submit" class="btn btn-primary">submit</button>
-        <a class="btn btn-primary" href="/admin_home" role="button">back</a>
+        <div class="text-center">
+            <button type="submit" class="btn btn-dark">submit</button>
+            <a class="btn btn-dark" href="/admin_home" role="button">back</a>
+        </div>  
     </form>
 {% endblock %}

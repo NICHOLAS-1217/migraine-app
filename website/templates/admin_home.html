@@ -4,68 +4,79 @@
     User Management
 {% endblock  %}
 
+{% block homeActive %}
+    nav-link active
+{% endblock %}
+
 {% block body %}
-
-    <h1>this is User Management</h1>
-
-    <p>this is patients</p>
-
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">name</th>
-                <th scope="col">email</th>
-                <th scope="col">caretaker_id</th>
-                <th scope="col">active</th>
-                <th scope="col">manage</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in users %}
-                <tr>
-                    <td>{{ i[0] }}</td>
-                    <td>{{ i[1] }}</td>
-                    <td>{{ i[2] }}</td>
-                    <td>{{ i[3] }}</td>
-                    <td>{{ i[4] }}</td>
-                    <td>
-                        <a class="btn btn-primary" href="{{ url_for('views.edit_user', user_id=i[0]) }}">edit</a>
-                        <a class="btn btn-primary" href="{{ url_for('views.de_active', user_id=i[0]) }}">de-active</a>
-                        <a class="btn btn-primary" href="{{ url_for('views.re_active', user_id=i[0]) }}">re-active</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <p>this is caretakers</p>
-
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">name</th>
-                <th scope="col">email</th>
-                <th scope="col">active</th>
-                <th scope="col">manage</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for x in caretakers %}
-                <tr>
-                    <td>{{ x[0] }}</td>
-                    <td>{{ x[1] }}</td>
-                    <td>{{ x[2] }}</td>
-                    <td>{{ x[3] }}</td>
-                    <td>
-                        <a class="btn btn-primary" href="{{ url_for('views.edit_care', care_id=x[0]) }}">edit</a>
-                        <a class="btn btn-primary" href="{{ url_for('views.de_active_care', care_id=x[0]) }}">de-active</a>
-                        <a class="btn btn-primary" href="{{ url_for('views.re_active_care', care_id=x[0]) }}">re-active</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
+    <div class="text-center m-3">
+        <img src="../static/img/management25%.png" alt="migraine logo">
+        <h1>Management</h1>
+    </div>
+    <hr>
+    <div class="border border border-black border-3 p-5 m-5">
+        <h2 class="text-center">Patients</h2>
+        <div class="table-responsive-sm">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">name</th>
+                        <th scope="col">email</th>
+                        <th scope="col">care_id</th>
+                        <th scope="col">active</th>
+                        <th scope="col">manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in users %}
+                        <tr>
+                            <td>{{ i[0] }}</td>
+                            <td>{{ i[1] }}</td>
+                            <td>{{ i[2] }}</td>
+                            <td>{{ i[3] }}</td>
+                            <td>{{ i[4] }}</td>
+                            <td>
+                                <a class="btn btn-dark" href="{{ url_for('views.edit_user', user_id=i[0]) }}">edit</a>
+                                <a class="btn btn-danger" href="{{ url_for('views.de_active', user_id=i[0]) }}">de-active</a>
+                                <a class="btn btn-success" href="{{ url_for('views.re_active', user_id=i[0]) }}">re-active</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="border border-black border-3 p-5 m-5">
+        <h2 class="text-center">Caretakers</h2>
+        <div class="table-responsive-sm">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">name</th>
+                        <th scope="col">email</th>
+                        <th scope="col">active</th>
+                        <th scope="col">manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in caretakers %}
+                        <tr>
+                            <td>{{ x[0] }}</td>
+                            <td>{{ x[1] }}</td>
+                            <td>{{ x[2] }}</td>
+                            <td>{{ x[3] }}</td>
+                            <td>
+                                <a class="btn btn-dark" href="{{ url_for('views.edit_care', care_id=x[0]) }}">edit</a>
+                                <a class="btn btn-danger" href="{{ url_for('views.de_active_care', care_id=x[0]) }}">de-active</a>
+                                <a class="btn btn-success" href="{{ url_for('views.re_active_care', care_id=x[0]) }}">re-active</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
 {% endblock  %}
