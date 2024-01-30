@@ -13,12 +13,15 @@ def login():
         password = request.form.get("password")
         user = User.query.filter_by(email=email).first()
         if user:
-            if check_password_hash(user.password, password):
-                flash("logged in succesfully", category="success")
-                login_user(user)
-                return redirect(url_for("views.home"))
+            if user.isActive == True:
+                if check_password_hash(user.password, password):
+                    flash("logged in succesfully", category="success")
+                    login_user(user)
+                    return redirect(url_for("views.home"))
+                else:
+                    flash("incorrect password, try again", category="error")
             else:
-                flash("incorrect password, try again", category="error")
+                flash("User is not active. Please contact admin.", category="error")
         else:
             flash("email dose not exist", category="error")
     return render_template("login.html")
@@ -72,12 +75,15 @@ def care_login():
         password = request.form.get("password")
         caretaker = Caretaker.query.filter_by(email=email).first()
         if caretaker:
-            if check_password_hash(caretaker.password, password):
-                flash("logged in succesfully", category="success")
-                login_user(caretaker)
-                return redirect(url_for("views.care_home"))
+            if caretaker.isActive == True:
+                if check_password_hash(caretaker.password, password):
+                    flash("logged in succesfully", category="success")
+                    login_user(caretaker)
+                    return redirect(url_for("views.care_home"))
+                else:
+                    flash("incorrect password, try again", category="error")
             else:
-                flash("incorrect password, try again", category="error")
+                flash("Caretaker is not active. Please contact admin.", category="error")
         else:
             flash("email dose not exist", category="error")
     return render_template("care_login.html")
