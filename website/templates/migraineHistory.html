@@ -30,21 +30,28 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel{{ status.id }}">{{ status.date }}</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel{{ status.id }}">Status id: {{ status.id }}</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <td>{{ status.severity }}</td>
-                                        <td>{{ status.stress }}</td>
-                                        <td>{{ status.light }}</td>
-                                        <td>{{ status.sound }}</td>
-                                        <td>{{ status.nausea }}</td>
-                                        <td>{{ status.aura }}</td>
-                                        <td>{{ status.visual }}</td>
-                                        <td>{{ status.dizzness }}</td>
-                                        <td>{{ status.fatigue  }}</td>
-                                        <td>{{ status.unconcentrated  }}</td>
-                                        <td>{{ status.neck }}</td>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>Date: {{ status.date }}</p>
+                                                <p>Stress: {{ status.stress }}</p>
+                                                <p>Light: {{ status.light }}</p>
+                                                <p>Sound: {{ status.sound }}</p>
+                                                <p>Nausea: {{ status.nausea }}</p>
+                                                <p>Aura: {{ status.aura }}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Severity: {{ status.severity }}</p>
+                                                <p>Visual: {{ status.visual }}</p>
+                                                <p>Dizzness: {{ status.dizzness }}</p>
+                                                <p>Fatigue: {{ status.fatigue }}</p>
+                                                <p>Unconcentrated: {{ status.unconcentrated }}</p>
+                                                <p>Neck: {{ status.neck }}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
