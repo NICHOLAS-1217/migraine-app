@@ -201,7 +201,7 @@ def care_profile():
     )
     if request.method == "POST":
         user_id = request.form.get("user_id")
-        if len(user_id) < 1:
+        if user_id == "":
             flash("please enter the user id to add", category="error")
         elif not user_id:
             flash("Please enter the available user id to add", category="error")
