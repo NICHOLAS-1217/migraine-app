@@ -10,7 +10,7 @@ git clone https://github.com/NICHOLAS-1217/migraine-app.git
 ```
 then, download the requirements
 ```bash
-pip install -r requirements. txt
+pip install -r requirements.txt
 ```
 last, run the app and click on the the link
 ```bash
