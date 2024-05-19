@@ -14,3 +14,8 @@ last, run the app and click on the the link
 ```bash
 python app.py
 ```
+
+## video presentation
+https://github.com/NICHOLAS-1217/migraine-app/assets/111276608/bef27f6c-9c47-49d1-addd-5ac53c947850
+
+
